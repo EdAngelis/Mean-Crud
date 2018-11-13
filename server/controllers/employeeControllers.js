@@ -18,7 +18,12 @@ employeeConrl.getByIdEmployees = async (req, res, next)=> {
 }
 
 employeeConrl.postEmployees = async (req, res, next) => {
-    const empregado = new employees (req.body)
+    const empregado = new employees ({
+        name: req.body.name,
+        position: req.body.position,
+        office: req.body.office,
+        salary: req.body.salary
+    })
     await empregado.save()
     res.json('Dados Salvos no BD')
 }

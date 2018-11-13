@@ -1,5 +1,6 @@
 'use strict'
 
+const http = require('http');
 const mongoose = require('mongoose')
 const path = require('path');
 const cors = require('cors');
@@ -10,7 +11,7 @@ const app = express();
 const controllers = require('./routes/controllersRoutes');
 const routes = require('./routes/routes');
 
-
+http.createServer(app)
 mongoose.connect('mongodb://DeAngelis84:first821068@ds157383.mlab.com:57383/first_node',{ useNewUrlParser: true });
     // Seleciona a porta do Servidor
 app.set('port', process.env.PORT || 3000);
@@ -23,7 +24,7 @@ app.set('view engine', 'ejs');
 app.set('views', path.join(__dirname, '../cliente/views'));
     
     // middleawres
-app.use(cors());
+app.use(cors({origin:'http://localhost:4200/'}));
 app.use(express.json());
 app.use(express.urlencoded({extended: false}));
 
